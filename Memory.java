@@ -41,7 +41,7 @@ public class Memory {
 			throw new ArithmeticException("Data Memory Full");
 	}
 	
-	protected void setNewData(int data, int adress) { // Coloca dado na memoria no proxima posição livre
+	protected void setNewData(int data, int adress) { // Coloca dado na memoria no endereço
 		if ((adress > 2048) | (adress < 1024))
 			throw new ArithmeticException("Invalid Adress");
 		buffer.putInt(adress, data);
