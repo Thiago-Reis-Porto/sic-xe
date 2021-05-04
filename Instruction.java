@@ -7,16 +7,18 @@ public class Instruction {
 		
 	}
 	//ADD - Soma um valor de memoria com o valor do reg A e armazena em A
-	static void add(Map<String, Integer> r, int memValue){
-			r.replace("A", r.get("A") + memValue);
+	static void add(Map<String, Integer> r, Memory m, int adress){
+		int data = m.getData(adress);	
+		r.replace("A", r.get("A") + data);
 	}
 	//ADDR - Soma dois registradores e armazena em r2
 	static void addR(Map<String, Integer> r, String r1, String r2){
 		r.replace(r2, r.get(r1) +  r.get(r2));
 	}
 	//AND - And um valor de memoria com o valor do reg A e armazena em A
-	static void and(Map<String, Integer> r, int memValue) {
-		r.replace("A", r.get("A") & memValue);
+	static void and(Map<String, Integer> r, Memory m, int adress) {
+		int data = m.getData(adress);
+		r.replace("A", r.get("A") & data);
 	}
 	// CLEAR - Limpa um registrador
 	static void clear(Map<String, Integer> r, String r1) {
@@ -24,8 +26,9 @@ public class Instruction {
 	}
 	
 	// COMP - Compara um valor de memoria com o valor do reg A
-	static int comp(Map<String, Integer> r,  int memValue) {
-		return Integer.compare(r.get("A"), memValue);
+	static int comp(Map<String, Integer> r, Memory m,  int adress) {
+		int data = m.getData(adress);
+		return Integer.compare(r.get("A"), data);
 	}
 	
 	// COMPR - Compara um valor de reg1 com o valor do reg 2
@@ -34,8 +37,9 @@ public class Instruction {
 	}
 	
 	// DIV - Divide o valor do reg A por um valor de memoria e armazena no reg A
-	static void div(Map<String, Integer> r, int memValue) {
-		r.replace("A", r.get("A") / memValue);
+	static void div(Map<String, Integer> r, Memory m, int adress) {
+		int data = m.getData(adress);
+		r.replace("A", r.get("A") / data);
 	}
 	
 	// DIVR - Divide o valor do reg 2 pelo do reg 2 e armazena no reg 2
@@ -73,36 +77,43 @@ public class Instruction {
 	}
 	
 	//LDA - Carrega em A
-	static void lda(Map<String, Integer> r, int memValue) {
-		r.replace("A", memValue);
+	static void lda(Map<String, Integer> r, Memory m, int adress) {
+		int data = m.getData(adress);
+		r.replace("A", data);
 	}
 	
 	//LDB - Carrega em B
-	static void ldb(Map<String, Integer> r, int memValue) {
-		r.replace("B", memValue);
+	static void ldb(Map<String, Integer> r, Memory m, int adress) {
+		int data = m.getData(adress);
+		r.replace("B", data);
 	}
 	//LDCH - Carrega no byte mais signidicativo de A
-	static void lch(Map<String, Integer> r, byte memValue) {
-		r.replace("A", r.get("A")&((int)memValue));
+	static void lch(Map<String, Integer> r, Memory m, int adress) {
+		byte data = m.getDataByte(adress);
+		r.replace("A", r.get("A")&((int)data));
 	}	
 	//LDS - Carrega em S
-	static void lds(Map<String, Integer> r, int memValue) {
-		r.replace("S", memValue);
+	static void lds(Map<String, Integer> r, Memory m, int adress) {
+		int data = m.getData(adress);
+		r.replace("S", data);
 	}	
 	
 	//LDT - Carrega em T
-	static void ldt(Map<String, Integer> r, int memValue) {
-		r.replace("T", memValue);
+	static void ldt(Map<String, Integer> r, Memory m, int adress) {
+		int data = m.getData(adress);
+		r.replace("T", data);
 	}	
 	
 	//LDX - Carrega em X
-	static void ldx(Map<String, Integer> r, int memValue) {
-		r.replace("X", memValue);
+	static void ldx(Map<String, Integer> r, Memory m, int adress) {
+		int data = m.getData(adress);
+		r.replace("X", data);
 	}	
 
 	//MUL - Multiplica um valor de memoria pelo reg A e armazena em A
-	static void mul(Map<String, Integer> r, int memValue) {
-		r.replace("A", r.get("A")*memValue);
+	static void mul(Map<String, Integer> r, Memory m, int adress) {
+		int data = m.getData(adress);
+		r.replace("A", r.get("A")*data);
 	}
 	
 	//MULR - Multiplica dois reg e armazena em r2
@@ -111,8 +122,9 @@ public class Instruction {
 	}
 	
 	// OR - bitwise ou entre um valor de memoria e reg A, armazena em A
-	static void or(Map<String, Integer> r, int memValue) {
-		r.replace("A", r.get("A") | memValue);
+	static void or(Map<String, Integer> r, Memory m, int adress) {
+		int data = m.getData(adress);
+		r.replace("A", r.get("A") | data);
 	}	
 	
 	// RMO - copia conteudo do reg1 para o reg2
@@ -164,17 +176,19 @@ public class Instruction {
 		m.setNewData(r.get("X"), adress);
 	}
 	// SUB -  armazena em A a subtração de um valor de memoria com reg A
-	static void sub(Map<String, Integer> r, int memValue) {
-		r.replace("A", memValue);
+	static void sub(Map<String, Integer> r, Memory m, int adress) {
+		int data = m.getData(adress);
+		r.replace("A", data);
 	}
 	// SUBR - armazena em r2 a subtação r2-r1
 	static void subr(Map<String, Integer> r, String r1, String r2) {
-		r.replace(r2, r.get(r2) - r.get(r2));
+		r.replace(r2, r.get(r2) - r.get(r1));
 	}
 	// TIX - Incrementa X e compara com valor de mem
-	static int tix(Map<String, Integer> r, int memValue) {
+	static int tix(Map<String, Integer> r, Memory m, int adress) {
+		int data = m.getData(adress);
 		r.replace("X", r.get("X") + 1);
-		return Integer.compare(r.get("X"), memValue);
+		return Integer.compare(r.get("X"), data);
 	}
 	
 	// TIXR - Incrementa X e compara com valor de r1
