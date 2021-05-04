@@ -50,6 +50,10 @@ public class Memory {
 	protected int getData(int adress) { // retorna dado da memoria
 		return buffer.getInt(adress);
 	}
+	
+	protected byte getDataByte(int adress) { // retorna dado(byte)da memoria
+		return buffer.get(adress);
+	}
 	//Limpa memoria
 	protected void clear() {
 		buffer.clear();
