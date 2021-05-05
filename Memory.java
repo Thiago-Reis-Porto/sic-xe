@@ -41,7 +41,11 @@ public class Memory {
 	}
 
 	protected int getData(int address) { // retorna dado da memoria
-		return buffer.get(address);
+		return buffer.getInt(address);
+	}
+
+	protected byte getDataByte(int adress) { // retorna dado(byte)da memoria
+		return buffer.get(adress);
 	}
 	//Limpa memoria
 	protected void clear() {
