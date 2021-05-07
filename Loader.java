@@ -9,33 +9,20 @@ import java.nio.ByteOrder;
 
 public class Loader {
   Memory memory;
+
   public Loader(Memory memory) {
     this.memory = memory;
-    readInputFile();
   }
 
-  private void readInputFile() {
+  protected void readInputFile() {
     String inputFileName = "input";
+
     try {
       File inputFile = new File(inputFileName);
       Scanner reader = new Scanner(inputFile);
 
       while (reader.hasNextLine()) {
-        String instruction = reader.nextLine();
-        String[] splitInstruction = instruction.split("(?<=\\G..)"); // split nth character
-
-        // ['14', '01', '00'] -> [20, 1, 0]
-        byte[] splitInstructionBytes;
-        ByteBuffer buffer;
-
-        splitInstructionBytes = new byte[splitInstruction.length * 4];
-        buffer = ByteBuffer.wrap(splitInstructionBytes);
-
-        for (String s : splitInstruction) {
-          buffer.put((byte) Integer.parseInt(s, 16));
-        }
-
-        memory.newInstF2F3F4(splitInstructionBytes);
+        addToMemory(reader.nextLine());
       }
 
       reader.close();
@@ -44,4 +31,27 @@ public class Loader {
       e.printStackTrace();
     }
   }
+
+  protected void addToMemory(String instruction) {
+    String[] splitInstruction = instruction.split("(?<=\\G..)"); // split nth character
+
+    // ['14', '01', '00'] -> [20, 1, 0]
+    byte[] splitInstructionBytes;
+    ByteBuffer buffer;
+
+    splitInstructionBytes = new byte[splitInstruction.length * 4];
+    buffer = ByteBuffer.wrap(splitInstructionBytes);
+
+    for (String s : splitInstruction) {
+      buffer.put((byte) Integer.parseInt(s, 16));
+    }
+
+    if (splitInstruction.length == 1) {
+      memory.newInstF1(splitInstructionBytes[0]);
+
+      return;
+    }
+
+    memory.newInstF2F3F4(splitInstructionBytes);
+  };
 }
