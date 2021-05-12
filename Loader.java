@@ -1,20 +1,14 @@
-// Responsável por ler o código objeto (linha a linha), armazenar a instrucao na memoria e chamar a funcao que executa a operacao.
-// TODO: executar todo o codigo objeto se der tempo
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 
 public class Loader {
-  Memory memory;
-
-  public Loader(Memory memory) {
-    this.memory = memory;
+  protected void start(Memory memory) {
+    readInputFile(memory);
   }
 
-  protected void readInputFile() {
+  protected void readInputFile(Memory memory) {
     String inputFileName = "input";
 
     try {
@@ -22,7 +16,7 @@ public class Loader {
       Scanner reader = new Scanner(inputFile);
 
       while (reader.hasNextLine()) {
-        addToMemory(reader.nextLine());
+        addToMemory(memory, reader.nextLine());
       }
 
       reader.close();
@@ -32,14 +26,13 @@ public class Loader {
     }
   }
 
-  protected void addToMemory(String instruction) {
+  protected void addToMemory(Memory memory, String instruction) {
     String[] splitInstruction = instruction.split("(?<=\\G..)"); // split nth character
 
-    // ['14', '01', '00'] -> [20, 1, 0]
     byte[] splitInstructionBytes;
     ByteBuffer buffer;
 
-    splitInstructionBytes = new byte[splitInstruction.length * 4];
+    splitInstructionBytes = new byte[splitInstruction.length];
     buffer = ByteBuffer.wrap(splitInstructionBytes);
 
     for (String s : splitInstruction) {

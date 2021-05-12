@@ -5,23 +5,26 @@ public class Register {
   private Map<String, Integer> register;
 
   public Register() {
-	
-	register = new HashMap<String, Integer>();
-	init();
+		init();
   };
 
   private void init() {
-		register.put("A", 1);
-	    register.put("X", 0);
-	    register.put("L", 0);
-	    register.put("B", 0);
-	    register.put("S", 0);
-	    register.put("T", 0);
-	    register.put("PC", 0);
-	    register.put("SW", 0);
+		register = new HashMap<String, Integer>();
+		register.put("A", -1);
+		register.put("X", -1);
+		register.put("L", -1);
+		register.put("B", -1);
+		register.put("S", -1);
+		register.put("T", -1);
+		register.put("PC", -1);
+		register.put("SW", -1);
   }
-  
-  protected Map<String, Integer> getRegister() {
-    return this.register;
-  }
+
+	public int get(String key) {
+		return register.get(key);
+	}
+
+	public void replace(String key, int value) {
+		register.replace(key, value);
+	}
 }
