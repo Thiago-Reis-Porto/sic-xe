@@ -1,3 +1,4 @@
+package SIC;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -9,7 +10,7 @@ public class Loader {
   }
 
   protected void readInputFile(Memory memory) {
-    String inputFileName = "input";
+    String inputFileName = "./SIC/input";
 
     try {
       File inputFile = new File(inputFileName);

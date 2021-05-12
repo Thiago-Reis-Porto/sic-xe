@@ -1,3 +1,4 @@
+package SIC;
 public class SIC {
   static Register register;
   static Memory memory;

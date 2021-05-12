@@ -1,3 +1,4 @@
+package SIC;
 public class Instruction {
 
 	byte opcode;
