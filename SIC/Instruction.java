@@ -20,13 +20,13 @@ public class Instruction {
 		this.nixbpe = nixbpe;
 		this.r1 = r1;
 		this.r2 = r2;
-		this.address = address;
+		this.address = address + 1024;
 	}
 
 	//Executa Instrução
 	protected void execInstruction(Register r, Memory m) {
 
-		adressCalc(r);
+		addressCalc(r);
 
 		if(opcode == 0x18) add(r, m);
 
@@ -110,7 +110,7 @@ public class Instruction {
 	//-----------------------------------Utilitarios--------------------------------------------------------
 	//------------------------------------------------------------------------------------------------------
 
-	private void adressCalc(Register r) {
+	private void addressCalc(Register r) {
 
 		//Endereçamento Direto
 		if(nixbpe == 50) // 110010

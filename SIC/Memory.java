@@ -39,9 +39,9 @@ public class Memory {
 	}
 
 	protected void setNewData(int value, int address) { // Coloca dado na memoria no proxima posição livre
-		if ((address + 1024 > 2048) | (address + 1024 < 1024))
+		if ((address > 2048) | (address < 1024))
 			throw new ArithmeticException("Invalid address");
-		buffer.putInt(address + 1024, value);
+		buffer.putInt(address, value);
 	}
 
 	protected int getData(int address) { // retorna dado da memoria

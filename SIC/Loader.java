@@ -22,7 +22,6 @@ public class Loader {
 
       reader.close();
     } catch (FileNotFoundException e) {
-      System.out.println("Error reading file");
       e.printStackTrace();
     }
   }

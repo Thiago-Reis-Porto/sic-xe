@@ -1,29 +1,25 @@
 package SIC;
 public class SIC {
-  static Register register;
-  static Memory memory;
-  static Loader loader;
-  static Instruction instruction;
+  private Register register;
+  private Memory memory;
+  private Loader loader;
+  private Instruction instruction;
 
-  public SIC() {
-    register = new Register();
-    memory = new Memory();
-    loader = new Loader();
-    instruction = new Instruction();
-
-    startSIC();
-    // System.out.println(memory.getData(1027));
+  public SIC(Register register, Memory memory, Loader loader, Instruction instruction) {
+    this.register = register;
+    this.memory = memory;
+    this.loader = loader;
+    this.instruction = instruction;
   }
 
-  protected void startSIC() {
+  public void start() {
     loader.start(memory);
 
-    memory.setNewData(123, 0);
+    memory.setNewData(69, 1024);
 
     int i = 0;
 
     while (true) {
-      System.out.println(i);
       byte opcode = memory.getDataByte(i);
       byte nixbpe = 0x0;
       String r1 = "", r2 = "";
@@ -58,44 +54,44 @@ public class SIC {
   }
 
   private int checkInstructionType(byte opcode) {
-    if(opcode == 0x18) return 1;
-		else if(opcode == 0x90) return 1;
-		else if(opcode == 0x40) return 1;
+    if(opcode == 0x18) return 3;
+		else if(opcode == 0x90) return 2;
+		else if(opcode == 0x40) return 3;
 		else if(opcode == 0x4) return 2;
-		else if(opcode == 0x28) return 1;
-		else if(opcode == 0xA0) return 1;
-		else if(opcode == 0x24) return 1;
-		else if(opcode == 0x9C) return 1;
-		else if(opcode == 0x3C) return 1;
-		else if(opcode == 0x30) return 1;
-		else if(opcode == 0x34) return 1;
-		else if(opcode == 0x38) return 1;
-		else if(opcode == 0x48) return 1;
-		else if(opcode == 0x00) return 1;
-		else if(opcode == 0x68) return 1;
-		else if(opcode == 0x50) return 1;
-		else if(opcode == 0x08) return 1;
-		else if(opcode == 0x6C) return 1;
-		else if(opcode == 0x74) return 1;
-		else if(opcode == 0x04) return 1;
-		else if(opcode == 0x20) return 1;
-		else if(opcode == 0x98) return 1;
-		else if(opcode == 0x44) return 1;
-		else if(opcode == 0xAC) return 1;
-		else if(opcode == 0x4C) return 1;
-		else if(opcode == 0xA4) return 1;
-		else if(opcode == 0xA8) return 1;
-		else if(opcode == 0x0C) return 1;
-		else if(opcode == 0x78) return 1;
-		else if(opcode == 0x54) return 1;
-		else if(opcode == 0x14) return 1;
-		else if(opcode == 0x7C) return 1;
-		else if(opcode == 0x84) return 1;
-		else if(opcode == 0x10) return 1;
-		else if(opcode == 0x1C) return 1;
-		else if(opcode == 0x94) return 1;
-		else if(opcode == 0x2C) return 1;
-		else if(opcode == 0xB8) return 1;
+		else if(opcode == 0x28) return 3;
+		else if(opcode == 0xA0) return 2;
+		else if(opcode == 0x24) return 3;
+		else if(opcode == 0x9C) return 2;
+		else if(opcode == 0x3C) return 3;
+		else if(opcode == 0x30) return 3;
+		else if(opcode == 0x34) return 3;
+		else if(opcode == 0x38) return 3;
+		else if(opcode == 0x48) return 3;
+		else if(opcode == 0x00) return 3;
+		else if(opcode == 0x68) return 3;
+		else if(opcode == 0x50) return 3;
+		else if(opcode == 0x08) return 3;
+		else if(opcode == 0x6C) return 3;
+		else if(opcode == 0x74) return 3;
+		else if(opcode == 0x04) return 3;
+		else if(opcode == 0x20) return 3;
+		else if(opcode == 0x98) return 2;
+		else if(opcode == 0x44) return 3;
+		else if(opcode == 0xAC) return 2;
+		else if(opcode == 0x4C) return 3;
+		else if(opcode == 0xA4) return 2;
+		else if(opcode == 0xA8) return 2;
+		else if(opcode == 0x0C) return 3;
+		else if(opcode == 0x78) return 3;
+		else if(opcode == 0x54) return 3;
+		else if(opcode == 0x14) return 3;
+		else if(opcode == 0x7C) return 3;
+		else if(opcode == 0x84) return 3;
+		else if(opcode == 0x10) return 3;
+		else if(opcode == 0x1C) return 3;
+		else if(opcode == 0x94) return 2;
+		else if(opcode == 0x2C) return 3;
+		else if(opcode == 0xB8) return 2;
 
     return 1;
   }
@@ -112,5 +108,9 @@ public class SIC {
     else if (register == 8) return "SW";
 
     return "";
+  }
+
+  public int getMemory(int index) {
+    return memory.getData(index);
   }
 }
