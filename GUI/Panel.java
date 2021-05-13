@@ -7,6 +7,8 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.SystemColor;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.BoxLayout;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
@@ -14,6 +16,9 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.awt.event.ActionEvent;
 
 public class Panel extends JPanel {
 
@@ -153,6 +158,20 @@ public class Panel extends JPanel {
 		add(lblSw);
 		
 		JButton btnLoad = new JButton("LOAD");
+		btnLoad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			    JFileChooser jFileChooser = new JFileChooser();
+		    	jFileChooser.setCurrentDirectory(new File("/User/alvinreyes"));
+		         
+		        int result = jFileChooser.showOpenDialog(new JFrame());
+		     
+		     
+		        if (result == JFileChooser.APPROVE_OPTION) {
+		            File selectedFile = jFileChooser.getSelectedFile();
+		            System.out.println("Selected file: " + selectedFile.getAbsolutePath());
+		        }
+			}
+		});
 		btnLoad.setForeground(Color.BLACK);
 		btnLoad.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnLoad.setBounds(31, 76, 89, 23);
