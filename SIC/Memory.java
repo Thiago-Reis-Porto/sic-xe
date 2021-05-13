@@ -55,4 +55,12 @@ public class Memory {
 	protected void clear() {
 		buffer.clear();
 	}
+	
+	public String memoryString() {
+		StringBuilder sb = new StringBuilder();
+	    for (byte b : memory) {
+	        sb.append(String.format("%02X ", b));
+	    }
+	    return sb.toString();
+	}
 }
