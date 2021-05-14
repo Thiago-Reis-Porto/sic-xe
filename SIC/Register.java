@@ -21,11 +21,11 @@ public class Register {
 		register.put("SW", -1);
   }
 
-	protected int get(String key) {
+	public int get(String key) {
 		return register.get(key);
 	}
 
-	protected void replace(String key, int value) {
+	public void replace(String key, int value) {
 		register.replace(key, value);
 	}
 

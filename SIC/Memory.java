@@ -51,11 +51,12 @@ public class Memory {
 	protected byte getDataByte(int address) { // retorna dado(byte)da memoria
 		return buffer.get(address);
 	}
+
 	//Limpa memoria
 	protected void clear() {
 		buffer.clear();
 	}
-	
+
 	public String memoryString() {
 		StringBuilder sb = new StringBuilder();
 	    for (byte b : memory) {

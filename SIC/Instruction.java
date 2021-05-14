@@ -26,7 +26,7 @@ public class Instruction {
 	//Executa Instrução
 	protected void execInstruction(Register r, Memory m) {
 
-		addressCalc(r);
+		addressCalc(r, m);
 
 		if(opcode == 0x18) add(r, m);
 
@@ -110,8 +110,7 @@ public class Instruction {
 	//-----------------------------------Utilitarios--------------------------------------------------------
 	//------------------------------------------------------------------------------------------------------
 
-	private void addressCalc(Register r) {
-
+	private void addressCalc(Register r, Memory m) {
 		//Endereçamento Direto
 		if(nixbpe == 50) // 110010
 			address = r.get("PC") + (~address + 1);
@@ -131,8 +130,11 @@ public class Instruction {
 		if(nixbpe == 8) // 001000
 			address = r.get("X") + address;
 
+		//Enderecamento indireto
+		if((nixbpe == 32) || (nixbpe == 33) || (nixbpe == 34) || (nixbpe == 36)) {
+			address = m.getData(address);
+		}
 	}
-
 
 	//------------------------------------------------------------------------------------------------------
 	//---------------------------------METODOS DAS INSTRUÇÕES-----------------------------------------------

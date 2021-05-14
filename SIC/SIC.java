@@ -1,21 +1,20 @@
 package SIC;
+
 public class SIC {
   private Register register;
   private Memory memory;
   private Loader loader;
   private Instruction instruction;
 
-  public SIC(Register register, Memory memory, Loader loader, Instruction instruction) {
-    this.register = register;
-    this.memory = memory;
-    this.loader = loader;
-    this.instruction = instruction;
+  public SIC() {
+    register = new Register();
+    memory = new Memory();
+    loader = new Loader();
+    instruction = new Instruction();
   }
 
   public void start() {
     loader.start(memory);
-
-    memory.setNewData(69, 1024);
 
     int i = 0;
 
@@ -54,7 +53,11 @@ public class SIC {
     }
   }
 
-  public int getMemory(int index) {
-    return memory.getData(index);
+  public Memory getMemory() {
+    return memory;
+  }
+
+  public Register getRegister() {
+    return register;
   }
 }
