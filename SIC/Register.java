@@ -21,11 +21,26 @@ public class Register {
 		register.put("SW", -1);
   }
 
-	public int get(String key) {
+	protected int get(String key) {
 		return register.get(key);
 	}
 
-	public void replace(String key, int value) {
+	protected void replace(String key, int value) {
 		register.replace(key, value);
 	}
+
+
+  protected String getName(int register) {
+    if (register == 0) return "A";
+    else if (register == 1) return "X";
+    else if (register == 2) return "L";
+    else if (register == 3) return "B";
+    else if (register == 4) return "S";
+    else if (register == 5) return "T";
+    else if (register == 6) return "F";
+    else if (register == 7) return "PC";
+    else if (register == 8) return "SW";
+
+    return "";
+  }
 }
