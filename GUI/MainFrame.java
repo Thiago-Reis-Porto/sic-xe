@@ -1,6 +1,5 @@
 package GUI;
 
-import SIC.*;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -10,9 +9,27 @@ import javax.swing.border.EmptyBorder;
 
 public class MainFrame extends JFrame {
 
-	SIC sic;
 	private JPanel contentPane;
-	private Panel mainPanel =  new Panel();
+	private Panel mainPanel;
+
+	/**
+	 * Create the frame.
+	 */
+	public MainFrame() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 460, 650);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout(0, 0));
+		setContentPane(contentPane);
+		setResizable(false);
+
+		mainPanel = new Panel();
+
+		JPanel panel = new JPanel();
+		contentPane.add(panel, BorderLayout.NORTH);
+		getContentPane().add(mainPanel);
+	}
 
 	/**
 	 * Launch the application.
@@ -29,27 +46,4 @@ public class MainFrame extends JFrame {
 			}
 		});
 	}
-
-	/**
-	 * Create the frame.
-	 */
-	public MainFrame() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 475, 466);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
-		setResizable(false);
-
-		JPanel panel = new JPanel();
-		contentPane.add(panel, BorderLayout.NORTH);
-		getContentPane().add(mainPanel);
-
-		Memory mem = new Memory();
-		Register r = new Register();
-		mainPanel.updateMemText(mem.memoryString());
-		mainPanel.updateReg(r);
-	}
-
 }

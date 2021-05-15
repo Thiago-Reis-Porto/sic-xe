@@ -1,4 +1,5 @@
 package GUI;
+import SIC.SIC;
 import SIC.Register;
 import javax.swing.JPanel;
 import java.awt.Color;
@@ -19,11 +20,14 @@ public class Panel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	JTextPane memoryText;
+	SIC sic;
+	JTextPane instructionMemoryText, dataMemoryText;
 	JTextArea textRegA, textRegX, textRegL, textRegB;
 	JTextArea textRegS, textRegT, textRegPC, textRegSW;
 
 	public Panel() {
+		sic = new SIC();
+
 		setForeground(Color.WHITE);
 		setBackground(new Color(169, 169, 169));
 		setLayout(null);
@@ -35,34 +39,80 @@ public class Panel extends JPanel {
 		lblSicXeSimulator.setFont(new Font("Tahoma", Font.BOLD, 18));
 		add(lblSicXeSimulator);
 
-		JButton btnNewButton = new JButton("START");
-		btnNewButton.setForeground(Color.BLACK);
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 17));
-		btnNewButton.setBounds(31, 43, 89, 23);
-		add(btnNewButton);
+		JButton btnLoad = new JButton("LOAD");
+		btnLoad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				sic.start();
+				updateReg(sic.getRegister());
+				updateInstructionMemory(sic.getMemory().instructionMemoryToString());
+				updateDataMemory(sic.getMemory().dataMemoryToString());
+				// JFileChooser jFileChooser = new JFileChooser();
+				// jFileChooser.setCurrentDirectory(new File("/User/alvinreyes"));
+
+				// int result = jFileChooser.showOpenDialog(new JFrame());
+
+				// if (result == JFileChooser.APPROVE_OPTION) {
+				// 	File selectedFile = jFileChooser.getSelectedFile();
+				// 	System.out.println("Selected file: " + selectedFile.getAbsolutePath());
+				// }
+			}
+		});
+		btnLoad.setForeground(Color.BLACK);
+		btnLoad.setFont(new Font("Tahoma", Font.BOLD, 17));
+		btnLoad.setBounds(31, 76, 89, 23);
+		add(btnLoad);
 
 		JButton btnStep = new JButton("STEP");
 		btnStep.setForeground(new Color(0, 0, 0));
 		btnStep.setFont(new Font("Tahoma", Font.BOLD, 17));
 		btnStep.setBounds(31, 110, 89, 23);
+		btnStep.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				sic.step();
+				updateReg(sic.getRegister());
+				updateInstructionMemory(sic.getMemory().instructionMemoryToString());
+				updateDataMemory(sic.getMemory().dataMemoryToString());
+			}
+		});
 		add(btnStep);
 
-		JLabel lblMemDump = new JLabel("Memory");
-		lblMemDump.setForeground(new Color(0, 0, 0));
-		lblMemDump.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblMemDump.setBounds(21, 266, 89, 23);
-		add(lblMemDump);
+		// MEMORIA DE INSTRUCOES
+		JLabel instructionMemoryLabel = new JLabel("I. Memory");
+		instructionMemoryLabel.setForeground(new Color(0, 0, 0));
+		instructionMemoryLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
+		instructionMemoryLabel.setBounds(21, 275, 89, 23);
+		add(instructionMemoryLabel);
 
-		memoryText = new JTextPane();
-		memoryText.setEditable(false);
-		memoryText.setForeground(Color.BLACK);
-		memoryText.setBackground(Color.WHITE);
-		memoryText.setBounds(21, 289, 408, 100);
-		JScrollPane jsp = new JScrollPane(memoryText,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-		        JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		jsp.setBounds(21, 297, 408, 98);
-		//add(memoryText);
-		add(jsp);
+		instructionMemoryText = new JTextPane();
+		instructionMemoryText.setEditable(false);
+		instructionMemoryText.setForeground(Color.BLACK);
+		instructionMemoryText.setBackground(Color.WHITE);
+		JScrollPane instructionMemory = new JScrollPane(
+			instructionMemoryText,
+			JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+			JScrollPane.HORIZONTAL_SCROLLBAR_NEVER
+		);
+		instructionMemory.setBounds(21, 297, 408, 98);
+		add(instructionMemory);
+
+		// MEMORIA DE DADOS
+		JLabel dataMemoryLabel = new JLabel("D. Memory");
+		dataMemoryLabel.setForeground(new Color(0, 0, 0));
+		dataMemoryLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
+		dataMemoryLabel.setBounds(21, 420, 89, 23);
+		add(dataMemoryLabel);
+
+		dataMemoryText = new JTextPane();
+		dataMemoryText.setEditable(false);
+		dataMemoryText.setForeground(Color.BLACK);
+		dataMemoryText.setBackground(Color.WHITE);
+		JScrollPane dataMemory = new JScrollPane(
+			dataMemoryText,
+			JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+			JScrollPane.HORIZONTAL_SCROLLBAR_NEVER
+		);
+		dataMemory.setBounds(21, 440, 408, 98);
+		add(dataMemory);
 
 		textRegA = new JTextArea();
 		textRegA.setEditable(false);
@@ -150,26 +200,6 @@ public class Panel extends JPanel {
 		lblSw.setBounds(370, 218, 18, 14);
 		add(lblSw);
 
-		JButton btnLoad = new JButton("LOAD");
-		btnLoad.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			    JFileChooser jFileChooser = new JFileChooser();
-		    	jFileChooser.setCurrentDirectory(new File("/User/alvinreyes"));
-
-		        int result = jFileChooser.showOpenDialog(new JFrame());
-
-
-		        if (result == JFileChooser.APPROVE_OPTION) {
-		            File selectedFile = jFileChooser.getSelectedFile();
-		            System.out.println("Selected file: " + selectedFile.getAbsolutePath());
-		        }
-			}
-		});
-		btnLoad.setForeground(Color.BLACK);
-		btnLoad.setFont(new Font("Tahoma", Font.BOLD, 17));
-		btnLoad.setBounds(31, 76, 89, 23);
-		add(btnLoad);
-
 		JTextArea textArea_1_2 = new JTextArea();
 		textArea_1_2.setEditable(false);
 		textArea_1_2.setBounds(272, 100, 111, 22);
@@ -183,8 +213,11 @@ public class Panel extends JPanel {
 
 	}
 
-	protected void updateMemText(String mem) {
-		memoryText.setText(mem);
+	protected void updateInstructionMemory(String mem) {
+		instructionMemoryText.setText(mem);
+	}
+	protected void updateDataMemory(String mem) {
+		dataMemoryText.setText(mem);
 	}
 
 	protected void updateReg(Register r) {

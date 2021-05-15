@@ -57,11 +57,26 @@ public class Memory {
 		buffer.clear();
 	}
 
-	public String memoryString() {
+	public String instructionMemoryToString() {
 		StringBuilder sb = new StringBuilder();
-	    for (byte b : memory) {
-	        sb.append(String.format("%02X ", b));
-	    }
-	    return sb.toString();
+
+		for (int i = 0; i < 1024; i++) {
+			byte inst = getDataByte(i);
+			sb.append(String.format("%02X ", inst));
+		}
+
+		return sb.toString();
+	}
+
+	public String dataMemoryToString() {
+		StringBuilder sb = new StringBuilder();
+
+		for (int i = 1024; i < 2048; i++) {
+			byte inst = getDataByte(i);
+			sb.append(String.format("%02X ", inst));
+		}
+
+		return sb.toString();
+
 	}
 }
