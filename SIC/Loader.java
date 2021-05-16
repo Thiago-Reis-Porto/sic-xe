@@ -27,7 +27,7 @@ public class Loader {
   }
 
   protected void addToMemory(String instruction) {
-    String[] splitInstruction = instruction.split("(?<=\\G..)"); // split nth character
+    String[] splitInstruction = splitInstruction(instruction);
 
     byte[] splitInstructionBytes;
     ByteBuffer buffer;
@@ -47,4 +47,26 @@ public class Loader {
 
     memory.newInstF2F3F4(splitInstructionBytes);
   };
+
+  protected String[] splitInstruction(String instruction) {
+    String[] splitInstruction = new String[0];
+    int l = instruction.length();
+    if (l == 2) {
+      splitInstruction = new String[1];
+      splitInstruction[0] = instruction;
+    }
+    if (l == 4) {
+      splitInstruction = new String[2];
+      splitInstruction[0] = instruction.substring(0, 2);
+      splitInstruction[1] = instruction.substring(2, 4);
+    }
+    if (l > 4) {
+      splitInstruction = new String[3];
+      splitInstruction[0] = instruction.substring(0, 2);
+      splitInstruction[1] = instruction.substring(2, 4);
+      splitInstruction[2] = instruction.substring(4);
+    }
+
+    return splitInstruction;
+  }
 }

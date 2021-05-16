@@ -20,7 +20,7 @@ public class Instruction {
 		this.nixbpe = nixbpe;
 		this.r1 = r1;
 		this.r2 = r2;
-		this.address = address + 1024;
+		this.address = (address * 4) + 1024;
 	}
 
 	//Executa Instrução

@@ -18,7 +18,8 @@ public class SIC {
     loader.start(memory, filePath);
     register.start();
     instructionCounter = 0;
-    memory.setNewData(69, 1024);
+    memory.setNewData(6969, 1024);
+    memory.setNewData(1212, 1028);
   }
 
   public void step() {
