@@ -5,11 +5,7 @@ import java.util.Map;
 public class Register {
   private Map<String, Integer> register;
 
-  public Register() {
-		init();
-  };
-
-  private void init() {
+  public void start() {
 		register = new HashMap<String, Integer>();
 		register.put("A", -1);
 		register.put("X", -1);

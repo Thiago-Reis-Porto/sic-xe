@@ -24,6 +24,7 @@ public class Panel extends JPanel {
 	JTextPane instructionMemoryText, dataMemoryText;
 	JTextArea textRegA, textRegX, textRegL, textRegB;
 	JTextArea textRegS, textRegT, textRegPC, textRegSW;
+	JTextArea currentInstructionText;
 
 	public Panel() {
 		sic = new SIC();
@@ -52,6 +53,7 @@ public class Panel extends JPanel {
 					updateReg(sic.getRegister());
 					updateInstructionMemory(sic.getMemory().instructionMemoryToString());
 					updateDataMemory(sic.getMemory().dataMemoryToString());
+					updateCurrentInstruction(sic.getInstruction().getCurrentInstruction());
 				}
 			}
 		});
@@ -70,12 +72,13 @@ public class Panel extends JPanel {
 				updateReg(sic.getRegister());
 				updateInstructionMemory(sic.getMemory().instructionMemoryToString());
 				updateDataMemory(sic.getMemory().dataMemoryToString());
+				updateCurrentInstruction(sic.getInstruction().getCurrentInstruction());
 			}
 		});
 		add(btnStep);
 
 		// MEMORIA DE INSTRUCOES
-		JLabel instructionMemoryLabel = new JLabel("I. Memory");
+		JLabel instructionMemoryLabel = new JLabel("Instruction Memory");
 		instructionMemoryLabel.setForeground(new Color(0, 0, 0));
 		instructionMemoryLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
 		instructionMemoryLabel.setBounds(21, 275, 89, 23);
@@ -94,7 +97,7 @@ public class Panel extends JPanel {
 		add(instructionMemory);
 
 		// MEMORIA DE DADOS
-		JLabel dataMemoryLabel = new JLabel("D. Memory");
+		JLabel dataMemoryLabel = new JLabel("Data Memory");
 		dataMemoryLabel.setForeground(new Color(0, 0, 0));
 		dataMemoryLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
 		dataMemoryLabel.setBounds(21, 420, 89, 23);
@@ -198,17 +201,17 @@ public class Panel extends JPanel {
 		lblSw.setBounds(370, 218, 18, 14);
 		add(lblSw);
 
-		JTextArea textArea_1_2 = new JTextArea();
-		textArea_1_2.setEditable(false);
-		textArea_1_2.setBounds(272, 100, 111, 22);
-		add(textArea_1_2);
+		// Current Instrcution
+		JLabel currentInstructionLabel = new JLabel("Instruction");
+		currentInstructionLabel.setForeground(Color.BLACK);
+		currentInstructionLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
+		currentInstructionLabel.setBounds(276, 76, 90, 19);
+		add(currentInstructionLabel);
 
-		JLabel lblInstruction = new JLabel("Instruction");
-		lblInstruction.setForeground(Color.BLACK);
-		lblInstruction.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblInstruction.setBounds(286, 76, 83, 19);
-		add(lblInstruction);
-
+		currentInstructionText = new JTextArea();
+		currentInstructionText.setEditable(false);
+		currentInstructionText.setBounds(272, 100, 111, 22);
+		add(currentInstructionText);
 	}
 
 	protected void updateInstructionMemory(String mem) {
@@ -227,5 +230,9 @@ public class Panel extends JPanel {
 		textRegT.setText(Integer.toString(r.get("T")));
 		textRegPC.setText(Integer.toString(r.get("PC")));
 		textRegSW.setText(Integer.toString(r.get("SW")));
+	}
+
+	protected void updateCurrentInstruction(String instruction) {
+		currentInstructionText.setText(instruction);
 	}
 }

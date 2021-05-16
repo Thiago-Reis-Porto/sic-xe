@@ -16,6 +16,7 @@ public class SIC {
 
   public void start(String filePath) {
     loader.start(memory, filePath);
+    register.start();
     instructionCounter = 0;
     memory.setNewData(69, 1024);
   }
@@ -53,6 +54,7 @@ public class SIC {
     instruction.initInstruction(opcode, nixbpe, r1, r2, memoryAddress);
     instruction.execInstruction(register, memory);
     instructionCounter += 1;
+    register.replace("PC", instructionCounter);
   }
 
   public Memory getMemory() {
@@ -61,5 +63,9 @@ public class SIC {
 
   public Register getRegister() {
     return register;
+  }
+
+  public Instruction getInstruction() {
+    return instruction;
   }
 }

@@ -468,4 +468,8 @@ public class Instruction {
 
     return 1;
   }
+
+	public String getCurrentInstruction() {
+		return String.format("%02X ", opcode);
+	}
 }
