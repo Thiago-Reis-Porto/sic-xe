@@ -5,19 +5,19 @@ import java.util.Scanner;
 import java.nio.ByteBuffer;
 
 public class Loader {
-  protected void start(Memory memory) {
-    readInputFile(memory);
+  Memory memory;
+  protected void start(Memory memory, String filePath) {
+    this.memory = memory;
+    readInputFile(filePath);
   }
 
-  protected void readInputFile(Memory memory) {
-    String inputFileName = "./SIC/input";
-
+  protected void readInputFile(String filePath) {
     try {
-      File inputFile = new File(inputFileName);
+      File inputFile = new File(filePath);
       Scanner reader = new Scanner(inputFile);
 
       while (reader.hasNextLine()) {
-        addToMemory(memory, reader.nextLine());
+        addToMemory(reader.nextLine());
       }
 
       reader.close();
@@ -26,7 +26,7 @@ public class Loader {
     }
   }
 
-  protected void addToMemory(Memory memory, String instruction) {
+  protected void addToMemory(String instruction) {
     String[] splitInstruction = instruction.split("(?<=\\G..)"); // split nth character
 
     byte[] splitInstructionBytes;

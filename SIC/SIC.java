@@ -14,8 +14,8 @@ public class SIC {
     instruction = new Instruction();
   }
 
-  public void start() {
-    loader.start(memory);
+  public void start(String filePath) {
+    loader.start(memory, filePath);
     instructionCounter = 0;
     memory.setNewData(69, 1024);
   }

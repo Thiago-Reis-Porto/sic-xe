@@ -42,19 +42,17 @@ public class Panel extends JPanel {
 		JButton btnLoad = new JButton("LOAD");
 		btnLoad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				sic.start();
-				updateReg(sic.getRegister());
-				updateInstructionMemory(sic.getMemory().instructionMemoryToString());
-				updateDataMemory(sic.getMemory().dataMemoryToString());
-				// JFileChooser jFileChooser = new JFileChooser();
-				// jFileChooser.setCurrentDirectory(new File("/User/alvinreyes"));
+				JFileChooser jFileChooser = new JFileChooser();
 
-				// int result = jFileChooser.showOpenDialog(new JFrame());
+				int result = jFileChooser.showOpenDialog(new JFrame());
 
-				// if (result == JFileChooser.APPROVE_OPTION) {
-				// 	File selectedFile = jFileChooser.getSelectedFile();
-				// 	System.out.println("Selected file: " + selectedFile.getAbsolutePath());
-				// }
+				if (result == JFileChooser.APPROVE_OPTION) {
+					File selectedFile = jFileChooser.getSelectedFile();
+					sic.start(selectedFile.getAbsolutePath());
+					updateReg(sic.getRegister());
+					updateInstructionMemory(sic.getMemory().instructionMemoryToString());
+					updateDataMemory(sic.getMemory().dataMemoryToString());
+				}
 			}
 		});
 		btnLoad.setForeground(Color.BLACK);
