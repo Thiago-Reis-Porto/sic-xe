@@ -81,7 +81,7 @@ public class Panel extends JPanel {
 		JLabel instructionMemoryLabel = new JLabel("Instruction Memory");
 		instructionMemoryLabel.setForeground(new Color(0, 0, 0));
 		instructionMemoryLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
-		instructionMemoryLabel.setBounds(21, 275, 89, 23);
+		instructionMemoryLabel.setBounds(21, 275, 175, 23);
 		add(instructionMemoryLabel);
 
 		instructionMemoryText = new JTextPane();
@@ -100,7 +100,7 @@ public class Panel extends JPanel {
 		JLabel dataMemoryLabel = new JLabel("Data Memory");
 		dataMemoryLabel.setForeground(new Color(0, 0, 0));
 		dataMemoryLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
-		dataMemoryLabel.setBounds(21, 420, 89, 23);
+		dataMemoryLabel.setBounds(21, 420, 100, 23);
 		add(dataMemoryLabel);
 
 		dataMemoryText = new JTextPane();
@@ -202,10 +202,10 @@ public class Panel extends JPanel {
 		add(lblSw);
 
 		// Current Instrcution
-		JLabel currentInstructionLabel = new JLabel("Instruction");
+		JLabel currentInstructionLabel = new JLabel("Current Instruction");
 		currentInstructionLabel.setForeground(Color.BLACK);
 		currentInstructionLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
-		currentInstructionLabel.setBounds(276, 76, 90, 19);
+		currentInstructionLabel.setBounds(276, 76, 175, 19);
 		add(currentInstructionLabel);
 
 		currentInstructionText = new JTextArea();

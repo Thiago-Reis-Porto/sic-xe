@@ -14,7 +14,6 @@ public class Memory {
 	private ByteBuffer buffer; // buffer para facilitar o controle da memoria
 	private int instPointer; // Ponteiro para instruções
 
-
 	public Memory() {
 		memory = new byte[2048]; //Memoria com 2 kb
 		buffer = ByteBuffer.wrap(memory);
@@ -77,6 +76,5 @@ public class Memory {
 		}
 
 		return sb.toString();
-
 	}
 }

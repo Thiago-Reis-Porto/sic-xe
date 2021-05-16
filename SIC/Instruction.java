@@ -28,81 +28,81 @@ public class Instruction {
 
 		addressCalc(r, m);
 
-		if(opcode == 0x18) add(r, m);
+		if(opcode == (byte) 0x18) add(r, m);
 
-		else if(opcode == 0x90) addR(r);
+		else if(opcode == (byte) 0x90) addR(r);
 
-		else if(opcode == 0x40) and(r, m);
+		else if(opcode == (byte) 0x40) and(r, m);
 
-		else if(opcode == 0x4) clear(r);
+		else if(opcode == (byte) 0xB4) clear(r);
 
-		else if(opcode == 0x28) comp(r, m);
+		else if(opcode == (byte) 0x28) comp(r, m);
 
-		else if(opcode == 0xA0) compR(r);
+		else if(opcode == (byte) 0xA0) compR(r);
 
-		else if(opcode == 0x24) div(r, m);
+		else if(opcode == (byte) 0x24) div(r, m);
 
-		else if(opcode == 0x9C) divR(r);
+		else if(opcode == (byte) 0x9C) divR(r);
 
-		else if(opcode == 0x3C) j(r);
+		else if(opcode == (byte) 0x3C) j(r);
 
-		else if(opcode == 0x30) jeq(r);
+		else if(opcode == (byte) 0x30) jeq(r);
 
-		else if(opcode == 0x34) jgt(r);
+		else if(opcode == (byte) 0x34) jgt(r);
 
-		else if(opcode == 0x38) jlt(r);
+		else if(opcode == (byte) 0x38) jlt(r);
 
-		else if(opcode == 0x48) jsub(r);
+		else if(opcode == (byte) 0x48) jsub(r);
 
-		else if(opcode == 0x00) lda(r, m);
+		else if(opcode == (byte) 0x00) lda(r, m);
 
-		else if(opcode == 0x68) ldb(r, m);
+		else if(opcode == (byte) 0x68) ldb(r, m);
 
-		else if(opcode == 0x50) ldch(r, m);
+		else if(opcode == (byte) 0x50) ldch(r, m);
 
-		else if(opcode == 0x08) ldl(r, m);
+		else if(opcode == (byte) 0x08) ldl(r, m);
 
-		else if(opcode == 0x6C) lds(r, m);
+		else if(opcode == (byte) 0x6C) lds(r, m);
 
-		else if(opcode == 0x74) ldt(r, m);
+		else if(opcode == (byte) 0x74) ldt(r, m);
 
-		else if(opcode == 0x04) ldx(r, m);
+		else if(opcode == (byte) 0x04) ldx(r, m);
 
-		else if(opcode == 0x20) mul(r, m);
+		else if(opcode == (byte) 0x20) mul(r, m);
 
-		else if(opcode == 0x98) mulr(r);
+		else if(opcode == (byte) 0x98) mulr(r);
 
-		else if(opcode == 0x44) or(r, m);
+		else if(opcode == (byte) 0x44) or(r, m);
 
-		else if(opcode == 0xAC) rmo(r);
+		else if(opcode == (byte) 0xAC) rmo(r);
 
-		else if(opcode == 0x4C) rsub(r);
+		else if(opcode == (byte) 0x4C) rsub(r);
 
-		else if(opcode == 0xA4) shiftl(r);
+		else if(opcode == (byte) 0xA4) shiftl(r);
 
-		else if(opcode == 0xA8) shiftr(r);
+		else if(opcode == (byte) 0xA8) shiftr(r);
 
-		else if(opcode == 0x0C) sta(r, m);
+		else if(opcode == (byte) 0x0C) sta(r, m);
 
-		else if(opcode == 0x78) stb(r, m);
+		else if(opcode == (byte) 0x78) stb(r, m);
 
-		else if(opcode == 0x54) stch(r, m);
+		else if(opcode == (byte) 0x54) stch(r, m);
 
-		else if(opcode == 0x14) stl(r, m);
+		else if(opcode == (byte) 0x14) stl(r, m);
 
-		else if(opcode == 0x7C) sts(r, m);
+		else if(opcode == (byte) 0x7C) sts(r, m);
 
-		else if(opcode == 0x84) stt(r, m);
+		else if(opcode == (byte) 0x84) stt(r, m);
 
-		else if(opcode == 0x10) stx(r, m);
+		else if(opcode == (byte) 0x10) stx(r, m);
 
-		else if(opcode == 0x1C) sub(r, m);
+		else if(opcode == (byte) 0x1C) sub(r, m);
 
-		else if(opcode == 0x94) subr(r);
+		else if(opcode == (byte) 0x94) subr(r);
 
-		else if(opcode == 0x2C) tix(r, m);
+		else if(opcode == (byte) 0x2C) tix(r, m);
 
-		else if(opcode == 0xB8) tixr(r);
+		else if(opcode == (byte) 0xB8) tixr(r);
 
 	}
 
@@ -427,44 +427,47 @@ public class Instruction {
 	//------------------------------------------------------------------------------------------------------
 
   protected int getType(byte opcode) {
-    if(opcode == 0x18) return 3;
-		else if(opcode == 0x90) return 2;
-		else if(opcode == 0x40) return 3;
-		else if(opcode == 0x4) return 2;
-		else if(opcode == 0x28) return 3;
-		else if(opcode == 0xA0) return 2;
-		else if(opcode == 0x24) return 3;
-		else if(opcode == 0x9C) return 2;
-		else if(opcode == 0x3C) return 3;
-		else if(opcode == 0x30) return 3;
-		else if(opcode == 0x34) return 3;
-		else if(opcode == 0x38) return 3;
-		else if(opcode == 0x48) return 3;
-		else if(opcode == 0x00) return 3;
-		else if(opcode == 0x68) return 3;
-		else if(opcode == 0x50) return 3;
-		else if(opcode == 0x08) return 3;
-		else if(opcode == 0x6C) return 3;
-		else if(opcode == 0x74) return 3;
-		else if(opcode == 0x04) return 3;
-		else if(opcode == 0x20) return 3;
-		else if(opcode == 0x98) return 2;
-		else if(opcode == 0x44) return 3;
-		else if(opcode == 0xAC) return 2;
-		else if(opcode == 0x4C) return 3;
-		else if(opcode == 0xA4) return 2;
-		else if(opcode == 0xA8) return 2;
-		else if(opcode == 0x0C) return 3;
-		else if(opcode == 0x78) return 3;
-		else if(opcode == 0x54) return 3;
-		else if(opcode == 0x14) return 3;
-		else if(opcode == 0x7C) return 3;
-		else if(opcode == 0x84) return 3;
-		else if(opcode == 0x10) return 3;
-		else if(opcode == 0x1C) return 3;
-		else if(opcode == 0x94) return 2;
-		else if(opcode == 0x2C) return 3;
-		else if(opcode == 0xB8) return 2;
+    if(opcode == (byte) 0x18) return 3;
+		else if(opcode == (byte) 0x90) return 2;
+		else if(opcode == (byte) 0x40) return 3;
+		else if(opcode == (byte) 0xB4) return 2;
+		else if(opcode == (byte) 0x4) return 3;
+		else if(opcode == (byte) 0x28) return 3;
+		else if(opcode == (byte) 0xA0) return 2;
+		else if(opcode == (byte) 0x24) return 3;
+		else if(opcode == (byte) 0x9C) return 2;
+		else if(opcode == (byte) 0x3C) return 3;
+		else if(opcode == (byte) 0x30) return 3;
+		else if(opcode == (byte) 0x34) return 3;
+		else if(opcode == (byte) 0x38) return 3;
+		else if(opcode == (byte) 0x48) return 3;
+		else if(opcode == (byte) 0x00) return 3;
+		else if(opcode == (byte) 0x68) return 3;
+		else if(opcode == (byte) 0x50) return 3;
+		else if(opcode == (byte) 0x08) return 3;
+		else if(opcode == (byte) 0x6C) return 3;
+		else if(opcode == (byte) 0x74) return 3;
+		else if(opcode == (byte) 0x04) return 3;
+		else if(opcode == (byte) 0x20) return 3;
+		else if(opcode == (byte) 0x98) return 2;
+		else if(opcode == (byte) 0x44) return 3;
+		else if(opcode == (byte) 0xAC) return 2;
+		else if(opcode == (byte) 0x4C) return 3;
+		else if(opcode == (byte) 0xA4) return 2;
+		else if(opcode == (byte) 0xA8) return 2;
+		else if(opcode == (byte) 0x0C) return 3;
+		else if(opcode == (byte) 0x78) return 3;
+		else if(opcode == (byte) 0x54) return 3;
+		else if(opcode == (byte) 0x14) return 3;
+		else if(opcode == (byte) 0x7C) return 3;
+		else if(opcode == (byte) 0x84) return 3;
+		else if(opcode == (byte) 0x10) return 3;
+		else if(opcode == (byte) 0x1C) return 3;
+		else if(opcode == (byte) 0x94) return 2;
+		else if(opcode == (byte) 0x2C) return 3;
+		else if(opcode == (byte) 0xB8) return 2;
+
+
 
     return 1;
   }
